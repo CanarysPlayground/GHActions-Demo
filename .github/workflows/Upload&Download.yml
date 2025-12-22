@@ -1,0 +1,36 @@
+name: GitHub Actions Upload & Download Artifacts
+on:
+  workflow_dispatch:
+  
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a one-line script
+        run: echo Hello, world!
+      
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+         name: test
+         path: ${{github.workspace}}/*  
+         
+  DeployToDev:
+    runs-on: windows-latest
+    needs: Build
+    environment: Dev
+    steps:
+        - name: Download artifact from build job
+          uses: actions/download-artifact@v4
+          with:
+            name: test
+  
+  DeployToProd:
+    runs-on: windows-latest
+    needs: DeployToDev
+    environment: Production
+    
+    steps:
+      - name: Deploying To Production
+        run: "echo I just deployed to Production"
