@@ -1,4 +1,4 @@
-name: Matrix Job Demo
+name: Matrix Job Demo (2)
 
 on:
   workflow_dispatch:
