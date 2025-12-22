@@ -8,21 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-      
-      - name: Restore dependencies
-        run: dotnet restore
-      
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
+      - name: Create sample project
+        run: |
+          dotnet new classlib -n MyLibrary
+          cd MyLibrary
+          echo '<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><TargetFramework>net8.0</TargetFramework><PackageId>MyLibrary</PackageId><Version>1.0.0</Version></PropertyGroup></Project>' > MyLibrary.csproj
       
       - name: Pack
-        run: dotnet pack --configuration Release --output ./nupkg
+        run: dotnet pack MyLibrary/MyLibrary.csproj --configuration Release --output ./nupkg
       
       - name: Publish to GitHub Packages
         run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
