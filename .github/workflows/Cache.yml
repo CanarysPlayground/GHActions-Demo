@@ -1,0 +1,30 @@
+name: Caching Demo (2)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  demo-cache:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Create test files
+        run: |
+          mkdir -p my-cache
+          echo "Cached data from run $(date)" > my-cache/data.txt
+          echo "File 1" > my-cache/file1.txt
+          echo "File 2" > my-cache/file2.txt
+      
+      - name: Cache files
+        uses: actions/cache@v4
+        with:
+          path: my-cache
+          key: my-cache-${{ github.run_number }}
+          restore-keys: |
+            my-cache-
+      
+      - name: Display cached files
+        run: |
+          echo "Cache contents:"
+          ls -la my-cache/
+          cat my-cache/data.txt
