@@ -1,10 +1,6 @@
-name: Environment based Deployment
+name: Environment based Deployment (3)
 
 on:
-  push:
-    branches:
-      - main
-
   workflow_dispatch: 
 
 jobs:
