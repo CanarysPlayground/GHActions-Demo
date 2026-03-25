@@ -1,0 +1,14 @@
+name: Environment based Deployment (3)
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
