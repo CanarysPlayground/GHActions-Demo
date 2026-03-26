@@ -9,4 +9,5 @@ This repo is created to showcase the GitHub Actions for Bootcamp
 
 Adding a line to trigger the workflow!!
 
-New line for Push event..
+
+New line for commit.
