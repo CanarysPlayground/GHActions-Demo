@@ -12,3 +12,5 @@ Adding a line to trigger the workflow!!
 [![Run the Script (2)](https://github.com/CanarysPlayground/GHActions-Demo/actions/workflows/Script.yml/badge.svg)](https://github.com/CanarysPlayground/GHActions-Demo/actions/workflows/Script.yml)
 
 New line for commit.
+
+GITHUB_TOKEN = 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
