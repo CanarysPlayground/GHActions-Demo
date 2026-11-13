@@ -13,4 +13,3 @@ Adding a line to trigger the workflow!!
 
 New line for commit.
 
-GITHUB_TOKEN = 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
